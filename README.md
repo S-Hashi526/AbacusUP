@@ -1,24 +1,10 @@
-# README
+# AbacusUp
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+そろばん教室の紹介、生徒の成績管理やスタッフの勤怠管理、オンライン授業の予約などを目的としたアプリケーションです。
 
-Things you may want to cover:
+## 開発環境
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* VScode
+* Ruby '2.7.6'
+* Rails '~> 5.1.6'
+* Git
