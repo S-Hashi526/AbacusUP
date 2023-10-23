@@ -19,6 +19,8 @@ gem 'will_paginate'                 # ページネーション
 gem 'rounding'                      # 時間だけでなく、数値全般を扱える
 gem 'roo'                           # csvファイル読込用（Excel, CSV, OpenOffice, GoogleSpreadSheetを開くことが可能）
 gem 'devise'                        # Devise
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 gem 'carrierwave'
 gem 'line-bot-api'
 
