@@ -2,9 +2,10 @@ Rails.application.routes.draw do
   
   root 'static_pages#top'
 
-  devise_for :users, :controllers => {
-    :registrations => 'users/registrations',
-    :sessions => 'users/sessions'
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    omniauth_callbacks: "omniauth_callbacks"
   }
 
   devise_scope :user do
