@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   
-  root 'static_pages#top'
-
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',
     omniauth_callbacks: "omniauth_callbacks"
   }
-
+  
+  root 'static_pages#top'
+  
   devise_scope :user do
     get "user/:id", :to => "users/registrations#detail"
     get "signup", :to => "users/registrations#new"
