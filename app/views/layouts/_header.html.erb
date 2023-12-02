@@ -4,9 +4,51 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Top", root_path %></li>
-        <% if user_signed_in? %>
-          <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+        <% if user_signed_in? && current_user.present? %>
+          <!-- 塾長ユーザーの場合、講師一覧へのリンクと生徒一覧へのリンクを表示 -->
+          <% if current_user.principal? %>
+            <li><%= link_to "講師一覧", instructors_path, class: "header-list" %></li>
+            <li><%= link_to "生徒一覧", students_path, class: "header-list" %></li>
+          <!-- 講師ユーザーの場合、生徒一覧へのリンクを表示 -->
+          <% elsif current_user.instructor? %>
+            <li><%= link_to "生徒一覧", students_path, class: "header-list" %></li>
+          <% end %>
+
+          <!-- タスク作成ページへのリンク -->
+          <li><%= link_to "タスク作成", new_user_task_path(current_user), class: "header-list" %></li>
+
+          <!-- ログインユーザーのドロップダウンメニュー -->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle header-list" data-toggle="dropdown" id="dropdown-title">
+              <%= current_user.name %> <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- ユーザーセクション -->
+              <li class="dropdown-header"><%= current_user.name %></li>
+              <li><%= link_to "プロフィール", current_user %></li>
+              <li><%= link_to "設定", edit_user_path(current_user) %></li>
+
+              <!-- タスクセクション -->
+              <li class="dropdown-header">タスク</li>
+              <li><%= link_to "タスク一覧", user_tasks_path(current_user) %></li>
+
+              <!-- 分割線 -->
+              <li class="divider"></li>
+
+              <!-- ログアウト -->
+              <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+
+              <!-- 追加: ユーザーの権限に応じて表示を変更 -->
+              <% if current_user.principal? %>
+                <li><%= link_to "講師一覧", instructors_path, class: "header-list" %></li>
+                <li><%= link_to "生徒一覧", students_path, class: "header-list" %></li>
+              <% elsif current_user.instructor? %>
+                <li><%= link_to "生徒一覧", students_path, class: "header-list" %></li>
+              <% end %>
+            </ul>
+          </li>
         <% else %>
+          <!-- ログインしていない場合のリンク -->
           <li><%= link_to "Log in", login_path %></li>
         <% end %>
       </ul>
